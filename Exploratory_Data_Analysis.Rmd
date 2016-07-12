@@ -22,7 +22,7 @@ library(gridExtra)
 library(stringr)
 library(ggplot2)
 gc(reset=TRUE) # garbage collection
-setwd("C:/Users/Matt/Desktop/HIVET/Fundraising Analytics/R Markdown/")
+
 
 ```
 
@@ -31,7 +31,7 @@ setwd("C:/Users/Matt/Desktop/HIVET/Fundraising Analytics/R Markdown/")
 ## Load the Data
 First we load our data into R.
 ```{r load and preprocess data}
-filepath = "../Data Files/Subsetted Data/NonProfit/REL/"
+filepath = "../Data Files/"
 # training dataset
 train <- fread(paste0(filepath, "kaggle_training_dataset_formatted2.txt"), 
                stringsAsFactors = FALSE, drop = c("donated", "amount2", "databaseid"))
@@ -220,7 +220,7 @@ train$zip3 <- round(train$zip/100)
 ```
 The number of unique 3-digit ZIP codes is
 ```{r}
-length(unique(train$zip1))
+length(unique(train$zip3))
 ```
 The distribution of the 3-digit ZIP codes is as follows
 ```{r}
@@ -237,9 +237,7 @@ hist(train$zip1, 50,
 
 Let's see how the success rate and average donation amount is spread out over the aggregated ZIP codes.
 ```{r}
-zip1Summary <- analyzeSuccess("zip1")
 zip3Summary <- analyzeSuccess("zip3")
-zipSummary <- analyzeSuccess("zip")
 ```
 Accorrding to [wikipedia](https://en.wikipedia.org/wiki/List_of_ZIP_code_prefixes#Starts_with_5), the states with ZIP codes that start with 5 (that is, the states with the highest expected donation amount) are IA, WI, MN, SD, ND, MT. On the other hand, the states have a zip code that start with 8 (that is, the states with the lowest expected donation amounts) are CO, WY, UT, AZ, NM, NV.
 
