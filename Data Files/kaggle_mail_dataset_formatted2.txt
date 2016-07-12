@@ -1,0 +1,1 @@
+"ProjectId","mailid","prospectid","DateMailed","ListId","MailCodeId","PackageTypeCode","zip","zip4","packageid","phase","databaseid"
